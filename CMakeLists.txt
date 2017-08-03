@@ -6841,6 +6841,8 @@ set(SOURCE_FILES
 	"${UE4_ROOT_PATH}/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/ScreenshotTools.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/BattleTank.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/BattleTankGameModeBase.cpp"
+	"${GAME_ROOT_PATH}/Source/BattleTank/Tank.cpp"
+	"${GAME_ROOT_PATH}/Source/BattleTank/TankPlayerController.cpp"
  )
 
 set(HEADER_FILES 
@@ -15689,6 +15691,8 @@ set(HEADER_FILES
 	"${UE4_ROOT_PATH}/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Public/ScreenshotTools.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/BattleTank.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/BattleTankGameModeBase.h"
+	"${GAME_ROOT_PATH}/Source/BattleTank/Tank.h"
+	"${GAME_ROOT_PATH}/Source/BattleTank/TankPlayerController.h"
  )
 
 set(CONFIG_FILES 
