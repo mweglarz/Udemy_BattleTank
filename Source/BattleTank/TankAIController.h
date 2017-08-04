@@ -4,21 +4,23 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
-#include "GameFramework/Pawn.h"
 #include "Tank.h"
+#include "GameFramework/Pawn.h"
+#include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
 #include "TankAIController.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class BATTLETANK_API ATankAIController : public AAIController
-{
+class BATTLETANK_API ATankAIController : public AAIController {
 	GENERATED_BODY()
 	
 public:
-
     virtual void BeginPlay() override;
-    ATank* GetControlledTank();
-	
+
+private:
+    ATank* GetControlledTank() const;
+    ATank* GetPlayerTank() const;
 };
