@@ -6832,6 +6832,7 @@ SOURCES += \
 	"$$BattleTankRootPath/Source/BattleTank/BattleTankGameModeBase.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/Tank.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAIController.cpp" \
+	"$$BattleTankRootPath/Source/BattleTank/TankAimingComponent.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/TankPlayerController.cpp" \
  
 
