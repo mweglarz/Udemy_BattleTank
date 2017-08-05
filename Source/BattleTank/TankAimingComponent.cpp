@@ -55,7 +55,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) {
 //           *BarrelLocation.ToString());
 }
 
-void UTankAimingComponent::SetBarrel(UStaticMeshComponent *BarrelToSet) {
+void UTankAimingComponent::SetBarrel(UTankBarrel *BarrelToSet) {
     Barrel = BarrelToSet;
 }
 
@@ -71,7 +71,9 @@ void UTankAimingComponent::MoveBarrel(FVector ToDirection) {
     auto AimAsRotator = ToDirection.Rotation();
     auto DeltaRotator = AimAsRotator - BarrelRotator;
 
-    UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *AimAsRotator.ToString());
+//    UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *AimAsRotator.ToString());
+
+    Barrel->Elevate(5); // TODO remove magic number
 }
 
 

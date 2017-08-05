@@ -8847,6 +8847,7 @@ HEADERS += \
 	"$$BattleTankRootPath/Source/BattleTank/Tank.h" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAIController.h" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAimingComponent.h" \
+	"$$BattleTankRootPath/Source/BattleTank/TankBarrel.h" \
 	"$$BattleTankRootPath/Source/BattleTank/TankPlayerController.h" \
  
 

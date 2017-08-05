@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "TankBarrel.h"
 #include "TankAimingComponent.generated.h"
 
 
@@ -15,7 +16,7 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 	GENERATED_BODY()
 
 private:
-    UStaticMeshComponent* Barrel = nullptr;
+    UTankBarrel* Barrel = nullptr;
 
 public:	
     UTankAimingComponent();
@@ -25,7 +26,7 @@ public:
 
     void AimAt(FVector HitLocation, float LaunchSpeed);
 
-    void SetBarrel(UStaticMeshComponent* BarrelToSet);
+    void SetBarrel(UTankBarrel* BarrelToSet);
     // TODO: add SetTuret
 
 protected:

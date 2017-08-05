@@ -6844,6 +6844,7 @@ set(SOURCE_FILES
 	"${GAME_ROOT_PATH}/Source/BattleTank/Tank.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankAIController.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankAimingComponent.cpp"
+	"${GAME_ROOT_PATH}/Source/BattleTank/TankBarrel.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankPlayerController.cpp"
  )
 
@@ -15696,6 +15697,7 @@ set(HEADER_FILES
 	"${GAME_ROOT_PATH}/Source/BattleTank/Tank.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankAIController.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankAimingComponent.h"
+	"${GAME_ROOT_PATH}/Source/BattleTank/TankBarrel.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankPlayerController.h"
  )
 
