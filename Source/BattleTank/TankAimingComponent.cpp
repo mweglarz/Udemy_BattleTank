@@ -32,12 +32,17 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) {
 
     // TODO: calculate outLaunchVelocity
     bool bCanHit = UGameplayStatics::SuggestProjectileVelocity(
-                this,
-                OutLaunchVelocity,
-                BarrelLocation,
-                HitLocation,
-                LaunchSpeed);
+                       this,
+                       OutLaunchVelocity,
+                       BarrelLocation,
+                       HitLocation,
+                       LaunchSpeed,
+                       false,
+                       0.f,
+                       0.f,
+                       ESuggestProjVelocityTraceOption::DoNotTrace);
 
+    auto Time = GetWorld()->GetTimeSeconds();
 
     if (bCanHit) {
         FString CanHitLog = bCanHit ? "true" : "false";
@@ -45,14 +50,10 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) {
         auto AimDirection = OutLaunchVelocity.GetSafeNormal();
         MoveBarrel(AimDirection);
 
-        UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s"),
-               *TankName,
-               *AimDirection.ToString());
+        UE_LOG(LogTemp, Warning, TEXT("%f aim solution found"), Time);
+    } else {
+        UE_LOG(LogTemp, Warning, TEXT("%f no aim solve found"), Time);
     }
-    //    UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s from %s"),
-//           *TankName,
-//           *HitLocation.ToString(),
-//           *BarrelLocation.ToString());
 }
 
 void UTankAimingComponent::SetBarrel(UTankBarrel *BarrelToSet) {
