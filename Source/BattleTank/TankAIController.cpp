@@ -2,6 +2,11 @@
 
 
 #include "TankAIController.h"
+#include "Tank.h"
+#include "GameFramework/Pawn.h"
+#include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
+
 
 void ATankAIController::BeginPlay() {
     Super::BeginPlay();

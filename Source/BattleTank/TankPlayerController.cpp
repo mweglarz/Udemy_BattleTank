@@ -2,6 +2,10 @@
 
 
 #include "TankPlayerController.h"
+#include "GameFramework/Pawn.h"
+#include "Engine/World.h"
+#include "Tank.h"
+
 
 ATankPlayerController::ATankPlayerController
 (const FObjectInitializer &ObjectInitializer): APlayerController(ObjectInitializer) {
