@@ -29,12 +29,9 @@ void UTankAimingComponent::TickComponent(
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) {
     if (!Barrel) return;
 
-    auto TankName = GetOwner()->GetName();
-
     FVector OutLaunchVelocity;
     auto BarrelLocation = Barrel->GetSocketLocation(FName("Projectile"));
 
-    // TODO: calculate outLaunchVelocity
     bool bCanHit = UGameplayStatics::SuggestProjectileVelocity(
                        this,
                        OutLaunchVelocity,
@@ -46,17 +43,9 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) {
                        0.f,
                        ESuggestProjVelocityTraceOption::DoNotTrace);
 
-    auto Time = GetWorld()->GetTimeSeconds();
-
     if (bCanHit) {
-        FString CanHitLog = bCanHit ? "true" : "false";
-
         auto AimDirection = OutLaunchVelocity.GetSafeNormal();
         MoveBarrel(AimDirection);
-
-        UE_LOG(LogTemp, Warning, TEXT("%f aim solution found"), Time);
-    } else {
-        UE_LOG(LogTemp, Warning, TEXT("%f no aim solve found"), Time);
     }
 }
 
@@ -76,9 +65,7 @@ void UTankAimingComponent::MoveBarrel(FVector ToDirection) {
     auto AimAsRotator = ToDirection.Rotation();
     auto DeltaRotator = AimAsRotator - BarrelRotator;
 
-//    UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *AimAsRotator.ToString());
-
-    Barrel->Elevate(5); // TODO remove magic number
+    Barrel->Elevate(DeltaRotator.Pitch); // TODO remove magic number
 }
 
 
