@@ -8844,6 +8844,7 @@ HEADERS += \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Public/ScreenshotTools.h" \
 	"$$BattleTankRootPath/Source/BattleTank/BattleTank.h" \
 	"$$BattleTankRootPath/Source/BattleTank/BattleTankGameModeBase.h" \
+	"$$BattleTankRootPath/Source/BattleTank/Projectile.h" \
 	"$$BattleTankRootPath/Source/BattleTank/Tank.h" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAIController.h" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAimingComponent.h" \

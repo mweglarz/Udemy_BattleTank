@@ -6830,6 +6830,7 @@ SOURCES += \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/ScreenshotTools.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/BattleTank.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/BattleTankGameModeBase.cpp" \
+	"$$BattleTankRootPath/Source/BattleTank/Projectile.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/Tank.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAIController.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAimingComponent.cpp" \
