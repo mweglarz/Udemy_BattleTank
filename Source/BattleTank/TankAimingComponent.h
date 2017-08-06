@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
+class UTankTurret;
 class UTankBarrel;
 class UTankAimingComponent;
 
@@ -16,6 +17,7 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 
 private:
     UTankBarrel* Barrel = nullptr;
+    UTankTurret* Turret = nullptr;
 
 public:	
     UTankAimingComponent();
@@ -25,8 +27,8 @@ public:
 
     void AimAt(FVector HitLocation, float LaunchSpeed);
 
-    void SetBarrel(UTankBarrel* BarrelToSet);
-    // TODO: add SetTuret
+    void SetBarrel(UTankBarrel* NewBarrel);
+    void SetTurret(UTankTurret* NewTurret);
 
 protected:
     // Called when the game starts
@@ -34,5 +36,6 @@ protected:
 
 private:
     void MoveBarrel(FVector ToDirection);
+    void MoveTurret(FVector ToDirection);
 
 };

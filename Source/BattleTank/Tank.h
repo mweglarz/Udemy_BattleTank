@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
+class UTankTurret;
 class UTankBarrel;
 class UTankAimingComponent;
 
@@ -31,6 +32,9 @@ public:
 
     UFUNCTION(BlueprintCallable, Category=Setup)
     void SetBarrel(UTankBarrel* NewBarrel);
+
+    UFUNCTION(BlueprintCallable, Category=Setup)
+    void SetTurret(UTankTurret* NewTurret);
 
 protected:
     // Called when the game starts or when spawned

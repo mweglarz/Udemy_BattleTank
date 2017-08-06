@@ -6846,6 +6846,7 @@ set(SOURCE_FILES
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankAimingComponent.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankBarrel.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankPlayerController.cpp"
+	"${GAME_ROOT_PATH}/Source/BattleTank/TankTurret.cpp"
  )
 
 set(HEADER_FILES 
@@ -15699,6 +15700,7 @@ set(HEADER_FILES
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankAimingComponent.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankBarrel.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankPlayerController.h"
+	"${GAME_ROOT_PATH}/Source/BattleTank/TankTurret.h"
  )
 
 set(CONFIG_FILES 

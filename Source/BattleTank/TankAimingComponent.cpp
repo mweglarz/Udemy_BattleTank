@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 
 
 // Sets default values for this component's properties
@@ -46,11 +47,16 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) {
     if (bCanHit) {
         auto AimDirection = OutLaunchVelocity.GetSafeNormal();
         MoveBarrel(AimDirection);
+        MoveTurret(AimDirection);
     }
 }
 
-void UTankAimingComponent::SetBarrel(UTankBarrel *BarrelToSet) {
-    Barrel = BarrelToSet;
+void UTankAimingComponent::SetBarrel(UTankBarrel *NewBarrel) {
+    Barrel = NewBarrel;
+}
+
+void UTankAimingComponent::SetTurret(UTankTurret *NewTurret) {
+    Turret = NewTurret;
 }
 
 // Called when the game starts
@@ -60,16 +66,18 @@ void UTankAimingComponent::BeginPlay() {
 
 void UTankAimingComponent::MoveBarrel(FVector ToDirection) {
 
-    // TODO: Move the barrel
     auto BarrelRotator = Barrel->GetForwardVector().Rotation();
     auto AimAsRotator = ToDirection.Rotation();
     auto DeltaRotator = AimAsRotator - BarrelRotator;
 
-    Barrel->Elevate(DeltaRotator.Pitch); // TODO remove magic number
+    Barrel->Elevate(DeltaRotator.Pitch);
 }
 
+void UTankAimingComponent::MoveTurret(FVector ToDirection) {
 
+    auto TurretRotator = Turret->GetForwardVector().Rotation();
+    auto AimAsRotator = ToDirection.Rotation();
+    auto DeltaRotator = AimAsRotator - TurretRotator;
 
-
-
-
+    Turret->Rotate(DeltaRotator.Yaw);
+}
