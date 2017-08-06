@@ -19,7 +19,7 @@ protected:
 
 private:
     UPROPERTY(EditAnywhere, Category=Firing)
-    float LaunchSpeed = 50000; // in cm/s
+    float LaunchSpeed = 6000; // in cm/s
 
 public:
     // constructor
