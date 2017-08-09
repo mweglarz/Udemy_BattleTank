@@ -4,6 +4,8 @@
 #include "Tank.h"
 #include "TankBarrel.h"
 #include "TankAimingComponent.h"
+#include "Projectile.h"
+#include "Engine/World.h"
 
 // Sets default values
 ATank::ATank() {
@@ -27,6 +29,7 @@ void ATank::AimAt(FVector HitLocation) {
 
 void ATank::SetBarrel(UTankBarrel *NewBarrel) {
     TankAimingComponent->SetBarrel(NewBarrel);
+    Barrel = NewBarrel;
 }
 
 void ATank::SetTurret(UTankTurret *NewTurret) {
@@ -34,7 +37,22 @@ void ATank::SetTurret(UTankTurret *NewTurret) {
 }
 
 void ATank::Fire() {
-    UE_LOG(LogTemp, Warning, TEXT("Fire!"));
+    if (!Barrel) return;
+
+    // Spawn a projectile at the socket location of the barrel
+    FVector Location = Barrel->GetSocketLocation(FName("Projectile"));
+    FRotator Rotator = Barrel->GetSocketRotation(FName("Projectile"));
+
+    float Time = GetWorld()->GetTimeSeconds();
+    UE_LOG(LogTemp, Warning, TEXT("%f: Fire! barrel  projectile location = %s, barrel location = %s"),
+           Time,
+           *Location.ToString(),
+           *Barrel->GetComponentLocation().ToString());
+
+    auto SpawnedActor = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Location, Rotator);
+    UE_LOG(LogTemp, Warning, TEXT("Spawned actor name = %s, location = %s"),
+           *SpawnedActor->GetName(),
+           *SpawnedActor->GetActorLocation().ToString());
 }
 
 // Called when the game starts or when spawned
