@@ -44,15 +44,10 @@ void ATank::Fire() {
     FRotator Rotator = Barrel->GetSocketRotation(FName("Projectile"));
 
     float Time = GetWorld()->GetTimeSeconds();
-    UE_LOG(LogTemp, Warning, TEXT("%f: Fire! barrel  projectile location = %s, barrel location = %s"),
-           Time,
-           *Location.ToString(),
-           *Barrel->GetComponentLocation().ToString());
 
     auto SpawnedActor = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Location, Rotator);
-    UE_LOG(LogTemp, Warning, TEXT("Spawned actor name = %s, location = %s"),
-           *SpawnedActor->GetName(),
-           *SpawnedActor->GetActorLocation().ToString());
+    if (!SpawnedActor) return;
+    SpawnedActor->LaunchProjectile(LaunchSpeed); // TODO: remove hardcoded value
 }
 
 // Called when the game starts or when spawned
