@@ -28,6 +28,11 @@ private:
     // Local reference for barrel to spawn projectiles
     UTankBarrel* Barrel = nullptr;
 
+    // Reload time in seconds
+    float ReloadTime = 3;
+
+    double LastFireTime = 0;
+
 public:
     // constructor
     ATank();
