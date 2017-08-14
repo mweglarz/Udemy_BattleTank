@@ -31,4 +31,8 @@ void UTankMovementComponent::Initialise(UTankTrack *LeftTrackToSet,
     RightTrack = RightTrackToSet;
 }
 
+void UTankMovementComponent::RequestDirectMove(const FVector &MoveVelocity, bool bForceMaxSpeed) {
+    UE_LOG(LogTemp, Warning, TEXT("%s movevelocity: %s"), *(GetOwner()->GetName()), *MoveVelocity.ToString());
+}
+
 bool UTankMovementComponent::AreTracksSet() { return LeftTrack && RightTrack; }
