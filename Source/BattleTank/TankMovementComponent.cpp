@@ -5,7 +5,6 @@
 #include "TankTrack.h"
 
 void UTankMovementComponent::IntendMoveForward(float Throw) {
-    // TODO: prevent for double accelerating
     if (!AreTracksSet()) return;
     LeftTrack->SetThrottle(Throw);
     RightTrack->SetThrottle(Throw);

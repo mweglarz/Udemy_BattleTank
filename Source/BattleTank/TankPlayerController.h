@@ -16,6 +16,9 @@ public:
     ATankPlayerController(const FObjectInitializer &ObjectInitializer);
     virtual void BeginPlay() override;
     virtual void Tick(float DeltaSeconds);
+
+protected:
+    UFUNCTION(BlueprintCallable, Category = "Setup")
     ATank* GetControlledTank() const;
 
 private:
