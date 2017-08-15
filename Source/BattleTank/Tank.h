@@ -47,12 +47,6 @@ public:
 
     void AimAt(FVector HitLocation);
 
-    UFUNCTION(BlueprintCallable, Category=Setup)
-    void SetBarrel(UTankBarrel* NewBarrel);
-
-    UFUNCTION(BlueprintCallable, Category=Setup)
-    void SetTurret(UTankTurret* NewTurret);
-
     UFUNCTION(BlueprintCallable, Category=Action)
     void Fire();
 

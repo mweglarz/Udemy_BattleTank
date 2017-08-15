@@ -5,7 +5,7 @@
 #include "GameFramework/Pawn.h"
 #include "Engine/World.h"
 #include "Tank.h"
-
+#include "TankAimingComponent.h"
 
 ATankPlayerController::ATankPlayerController
 (const FObjectInitializer &ObjectInitializer): APlayerController(ObjectInitializer) {
@@ -16,13 +16,11 @@ ATankPlayerController::ATankPlayerController
 void ATankPlayerController::BeginPlay() {
     Super::BeginPlay();
 
-    auto ControlledTank = GetControlledTank();
-
-    if (!ControlledTank) {
-        UE_LOG(LogTemp, Error, TEXT("PlayerController don't possess a tank"));
-
+    auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+    if (AimingComponent) {
+        FoundAimingComponent(AimingComponent);
     } else {
-        UE_LOG(LogTemp, Warning, TEXT("Possesed tank name = %s"), *(ControlledTank->GetName()));
+        UE_LOG(LogTemp, Error, TEXT("TankPlayerController didn't find AimingComponent"));
     }
 
     return;
