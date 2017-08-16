@@ -3,8 +3,6 @@
 
 #include "Tank.h"
 #include "TankBarrel.h"
-#include "TankAimingComponent.h"
-#include "TankMovementComponent.h"
 #include "Projectile.h"
 #include "Engine/World.h"
 
@@ -18,11 +16,6 @@ ATank::ATank() {
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) {
     Super::SetupPlayerInputComponent(PlayerInputComponent);
-}
-
-void ATank::AimAt(FVector HitLocation) {
-    if (!ensure(TankAimingComponent)) return;
-    TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
 void ATank::Fire() {
@@ -44,4 +37,6 @@ void ATank::Fire() {
 }
 
 // Called when the game starts or when spawned
-void ATank::BeginPlay() { Super::BeginPlay(); }
+void ATank::BeginPlay() {
+    Super::BeginPlay();
+}

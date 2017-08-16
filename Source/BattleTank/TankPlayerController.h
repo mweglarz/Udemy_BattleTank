@@ -13,6 +13,16 @@ UCLASS()
 class BATTLETANK_API ATankPlayerController : public APlayerController {
     GENERATED_BODY()
 
+private:
+    UPROPERTY(EditAnywhere)
+    float CrossHairXLocation = 0.5f;
+    UPROPERTY(EditAnywhere)
+    float CrossHairYLocation = 0.33333;
+    UPROPERTY(EditAnywhere)
+    float LineTraceRange = 1000000.f;
+
+    UTankAimingComponent* _AimingComponent;
+
 public:
     ATankPlayerController(const FObjectInitializer &ObjectInitializer);
     virtual void BeginPlay() override;
@@ -24,14 +34,6 @@ protected:
 
     UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
     void FoundAimingComponent(UTankAimingComponent* AimCompRef);
-
-private:
-    UPROPERTY(EditAnywhere)
-    float CrossHairXLocation = 0.5f;
-    UPROPERTY(EditAnywhere)
-    float CrossHairYLocation = 0.33333;
-    UPROPERTY(EditAnywhere)
-    float LineTraceRange = 1000000.f;
 
 private:
 

@@ -9,25 +9,16 @@
 class AProjectile;
 class UTankTurret;
 class UTankBarrel;
-class UTankAimingComponent;
-class UTankMovementComponent;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn {
 	GENERATED_BODY()
 
-protected:
-    UPROPERTY(BlueprintReadOnly)
-    UTankAimingComponent* TankAimingComponent = nullptr;
-
-    UPROPERTY(BlueprintReadOnly)
-    UTankMovementComponent* TankMovementComponent = nullptr;
-
 private:
     UPROPERTY(EditAnywhere, Category = Setup)
     TSubclassOf<AProjectile> ProjectileBlueprint; // Alternative TSubclassOf
 
-    UPROPERTY(EditAnywhere, Category = Firing)
+    UPROPERTY(EditAnywhere, Category = Firing)// TODO: remove after moving aim at and firing
     float LaunchSpeed = 6000; // in cm/s
 
     UPROPERTY(EditDefaultsOnly, Category = Firing)
@@ -45,7 +36,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-    void AimAt(FVector HitLocation);
+//    void AimAt(FVector HitLocation); // TODO: to remove
 
     UFUNCTION(BlueprintCallable, Category=Action)
     void Fire();
