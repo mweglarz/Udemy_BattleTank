@@ -21,7 +21,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) {
 }
 
 void ATank::AimAt(FVector HitLocation) {
-    if (!TankAimingComponent) return;
+    if (!ensure(TankAimingComponent)) return;
     TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
@@ -29,7 +29,7 @@ void ATank::Fire() {
 
     bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTime;
 
-    if (!Barrel || !isReloaded) return;
+    if (!ensure(Barrel) || !isReloaded) return;
 
     UE_LOG(LogTemp, Warning, TEXT("isReloaded ? %d"), isReloaded);
 
@@ -38,7 +38,7 @@ void ATank::Fire() {
     FRotator Rotator = Barrel->GetSocketRotation(FName("Projectile"));
 
     auto SpawnedActor = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Location, Rotator);
-    if (!SpawnedActor) return;
+    if (!ensure(SpawnedActor)) return;
     SpawnedActor->LaunchProjectile(LaunchSpeed);
     LastFireTime = FPlatformTime::Seconds();
 }

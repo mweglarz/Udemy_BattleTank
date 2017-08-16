@@ -34,6 +34,6 @@ ATank* ATankAIController::GetPlayerTank() const {
 
     auto PlayerController = GetWorld()->GetFirstPlayerController();
 
-    if (!PlayerController) return nullptr;
+    if (!ensure(PlayerController)) return nullptr;
     return Cast<ATank>(PlayerController->GetPawn());
 }
