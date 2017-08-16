@@ -4,7 +4,6 @@
 #include "TankPlayerController.h"
 #include "GameFramework/Pawn.h"
 #include "Engine/World.h"
-#include "Tank.h"
 #include "TankAimingComponent.h"
 
 ATankPlayerController::ATankPlayerController
@@ -16,7 +15,7 @@ ATankPlayerController::ATankPlayerController
 void ATankPlayerController::BeginPlay() {
     Super::BeginPlay();
 
-    auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+    auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
     if (ensure(AimingComponent)) {
         _AimingComponent = AimingComponent;
         FoundAimingComponent(AimingComponent);
@@ -28,10 +27,6 @@ void ATankPlayerController::Tick(float DeltaSeconds) {
     Super::Tick(DeltaSeconds);
     AimTowardsCrosshair();
     return;
-}
-
-ATank *ATankPlayerController::GetControlledTank() const {
-    return Cast<ATank>(GetPawn());
 }
 
 /// Private methods

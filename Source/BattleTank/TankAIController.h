@@ -6,7 +6,6 @@
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
-class ATank;
 class UTankAimingComponent;
 
 UCLASS()
@@ -25,6 +24,5 @@ public:
     virtual void Tick(float DeltaTime) override;
 
 private:
-    ATank* GetControlledTank() const;
-    ATank* GetPlayerTank() const;
+    APawn* GetPlayerTank() const;
 };
