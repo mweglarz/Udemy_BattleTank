@@ -25,7 +25,7 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 
 protected:
     UPROPERTY(BlueprintReadOnly, Category = "Setup")
-    EFiringState FiringState = EFiringState::Aiming;
+	EFiringState FiringState = EFiringState::Reloading;
 
 private:
     UTankBarrel* Barrel = nullptr;
@@ -34,13 +34,14 @@ private:
     UPROPERTY(EditDefaultsOnly, Category = "Firing")
     float LaunchSpeed = 6000; // [cm/s]
 
-    UPROPERTY(EditAnywhere, Category = Setup)
-    TSubclassOf<AProjectile> ProjectileBlueprint;
+	UPROPERTY(EditAnywhere, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBlueprint;
 
-    UPROPERTY(EditDefaultsOnly, Category = Firing)
-    float ReloadTime = 3; // Reload time in seconds
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float ReloadTime = 3; // Reload time in seconds
 
-    double LastFireTime = 0;
+	double LastFireTime = 0;
+	FVector AimDirection = FVector(0);
 
 public:	
     UTankAimingComponent();
@@ -48,8 +49,8 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Action")
     void AimAt(FVector HitLocation);
 
-    UFUNCTION(BlueprintCallable, Category="Action")
-    void Fire();
+	UFUNCTION(BlueprintCallable, Category="Action")
+	void Fire();
 
     UFUNCTION(BlueprintCallable, Category = "Setup")
     void Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
@@ -61,5 +62,7 @@ protected:
 private:
     void MoveBarrel(FVector ToDirection);
     void MoveTurret(FVector ToDirection);
+	bool isBarrelMoving() const;
 
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 };

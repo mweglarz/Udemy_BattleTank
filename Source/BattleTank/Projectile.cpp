@@ -21,8 +21,6 @@ void AProjectile::LaunchProjectile(float Speed) {
 
     MovementComponent->SetVelocityInLocalSpace(FVector::ForwardVector * Speed);
     MovementComponent->Activate();
-
-    UE_LOG(LogTemp, Warning, TEXT("%f: Launch projectile with speed %f"), Time, Speed);
 }
 
 // Called when the game starts or when spawned

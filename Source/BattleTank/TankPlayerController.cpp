@@ -15,9 +15,9 @@ ATankPlayerController::ATankPlayerController
 void ATankPlayerController::BeginPlay() {
     Super::BeginPlay();
 
-    auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
-    if (ensure(AimingComponent)) {
-		AimingComponent = AimingComponent;
+	auto FoundedAimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
+	if (ensure(FoundedAimingComponent)) {
+		AimingComponent = FoundedAimingComponent;
         FoundAimingComponent(AimingComponent);
     }
     return;
