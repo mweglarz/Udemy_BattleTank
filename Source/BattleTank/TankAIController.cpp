@@ -10,17 +10,17 @@
 void ATankAIController::BeginPlay() {
     Super::BeginPlay();
     PrimaryActorTick.bCanEverTick = true;
-    _AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
+	AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 }
 
 void ATankAIController::Tick(float DeltaTime) {
     Super::Tick(DeltaTime);
     auto PlayerTank = GetPlayerTank();
 
-    if (ensure(PlayerTank && _AimingComponent)) {
+	if (ensure(PlayerTank && AimingComponent)) {
         auto TankLocation = PlayerTank->GetActorLocation();
-        _AimingComponent->AimAt(TankLocation);
-//        AITank->Fire(); // TODO: move fire to AimComponent
+		AimingComponent->AimAt(TankLocation);
+		AimingComponent->Fire();
 
         MoveToActor(PlayerTank, AcceptanceRadius);
     }

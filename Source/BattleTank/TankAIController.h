@@ -17,7 +17,7 @@ private:
     UPROPERTY(EditDefaultsOnly, Category = Setup)
     float AcceptanceRadius = 3000;
 
-    UTankAimingComponent* _AimingComponent;
+	UTankAimingComponent* AimingComponent;
 
 public:
     virtual void BeginPlay() override;
