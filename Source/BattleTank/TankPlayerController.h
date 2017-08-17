@@ -20,7 +20,7 @@ private:
     UPROPERTY(EditAnywhere)
     float LineTraceRange = 1000000.f;
 
-    UTankAimingComponent* _AimingComponent;
+	UTankAimingComponent* AimingComponent;
 
 public:
     ATankPlayerController(const FObjectInitializer &ObjectInitializer);
