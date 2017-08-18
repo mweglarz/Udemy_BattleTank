@@ -61,7 +61,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector &HitLocation) const {
        return GetLookVectorHitLocation(HitLocation, LookDirection);
     }
 
-    return true;
+	return false;
 }
 
 bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation,

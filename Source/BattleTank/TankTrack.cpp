@@ -4,20 +4,13 @@
 #include "TankTrack.h"
 #include "Engine/World.h"
 
+
 void UTankTrack::SetThrottle(float Throttle) {
-    // TODO: clamp actual throttle value so player can't over drive
-
-    auto ForceApplied = GetForwardVector() * Throttle * TrackMaxDrivingForce;
-    auto ForceLocation = GetComponentLocation();
-	UPrimitiveComponent* TankRoot = Cast<UPrimitiveComponent>(GetOwner()->GetRootComponent());
-
-    if (!ensure(TankRoot)) return;
-
-	TankRoot->AddForceAtLocation(ForceApplied, ForceLocation);
+	CurrentThrottle = FMath::Clamp<float>(CurrentThrottle + Throttle, -2.f, 2.f);
 }
 
 UTankTrack::UTankTrack() {
-	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.bCanEverTick = false;
 }
 
 void UTankTrack::BeginPlay() {
@@ -26,9 +19,14 @@ void UTankTrack::BeginPlay() {
 	OnComponentHit.AddDynamic(this, &UTankTrack::OnHit);
 }
 
-void UTankTrack::TickComponent(float DeltaTime, ELevelTick TickType,
-							   FActorComponentTickFunction *ThisTickFunction) {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+void UTankTrack::OnHit(UPrimitiveComponent *HitComponent, AActor *OtherActor, UPrimitiveComponent *OtherComponent, FVector NormalImpulse, const FHitResult &Hit) {
+
+	ApplyDriftCorrectionForce();
+	DriveTrack();
+	CurrentThrottle = 0.f;
+}
+
+void UTankTrack::ApplyDriftCorrectionForce() {
 
 	UPrimitiveComponent* TankRoot = Cast<UPrimitiveComponent>(GetOwner()->GetRootComponent());
 	if (!ensure(TankRoot)) return;
@@ -37,6 +35,7 @@ void UTankTrack::TickComponent(float DeltaTime, ELevelTick TickType,
 	FVector RightVector = GetRightVector(); // unit vector
 
 	float SlippageSpeed = FVector::DotProduct(Velocity, RightVector);
+	float DeltaTime = GetWorld()->DeltaTimeSeconds;
 
 	// half the force because of 2 tracks
 	FVector DriftCorrectionForce = -0.5 * (SlippageSpeed / DeltaTime * RightVector) * TankRoot->GetMass();
@@ -44,9 +43,15 @@ void UTankTrack::TickComponent(float DeltaTime, ELevelTick TickType,
 	TankRoot->AddForce(DriftCorrectionForce);
 }
 
-void UTankTrack::OnHit(UPrimitiveComponent *HitComponent, AActor *OtherActor, UPrimitiveComponent *OtherComponent, FVector NormalImpulse, const FHitResult &Hit) {
+void UTankTrack::DriveTrack() {
 
-	UE_LOG(LogTemp, Warning, TEXT("hit ground"));
+	FVector ForceApplied = GetForwardVector() * CurrentThrottle * TrackMaxDrivingForce;
+	FVector ForceLocation = GetComponentLocation();
+	UPrimitiveComponent* TankRoot = Cast<UPrimitiveComponent>(GetOwner()->GetRootComponent());
+
+	if (!ensure(TankRoot)) return;
+
+	TankRoot->AddForceAtLocation(ForceApplied, ForceLocation);
 }
 
 

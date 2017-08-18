@@ -65,4 +65,6 @@ private:
 	bool isBarrelMoving() const;
 
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+
+	static float GetShortestWay(float Angle);
 };
