@@ -11,12 +11,13 @@ class UTankAimingComponent;
 UCLASS()
 class BATTLETANK_API ATankAIController : public AAIController {
 	GENERATED_BODY()
+
+protected:
+	// How close AI tank can get to player tank
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	float AcceptanceRadius = 8000;
 	
 private:
-    // How close AI tank can get to player tank
-    UPROPERTY(EditDefaultsOnly, Category = Setup)
-    float AcceptanceRadius = 3000;
-
 	UTankAimingComponent* AimingComponent;
 
 public:

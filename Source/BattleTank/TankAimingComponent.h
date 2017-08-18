@@ -10,7 +10,8 @@ UENUM()
 enum class EFiringState: uint8 {
     Locked,
     Aiming,
-    Reloading
+	Reloading,
+	OutOfAmmo
 };
 
 
@@ -26,6 +27,9 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 protected:
     UPROPERTY(BlueprintReadOnly, Category = "Setup")
 	EFiringState FiringState = EFiringState::Reloading;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	int32 AmmoCount = 10;
 
 private:
     UTankBarrel* Barrel = nullptr;
@@ -46,14 +50,19 @@ private:
 public:	
     UTankAimingComponent();
 
-    UFUNCTION(BlueprintCallable, Category = "Action")
+	UFUNCTION(BlueprintCallable, Category = "Firing")
     void AimAt(FVector HitLocation);
 
-	UFUNCTION(BlueprintCallable, Category="Action")
+	UFUNCTION(BlueprintCallable, Category="Firing")
 	void Fire();
 
     UFUNCTION(BlueprintCallable, Category = "Setup")
     void Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
+
+	EFiringState GetFiringState() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	int32 GetAmmoCount() const;
 
 protected:
     // Called when the game starts

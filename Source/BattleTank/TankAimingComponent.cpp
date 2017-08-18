@@ -41,7 +41,8 @@ void UTankAimingComponent::AimAt(FVector HitLocation) {
 
 void UTankAimingComponent::Fire() {
 
-	if (!ensure(Barrel) || FiringState == EFiringState::Reloading) return;
+	bool bIsFiringStateOK = FiringState == EFiringState::Aiming || FiringState == EFiringState::Locked;
+	if (!ensure(Barrel) || !bIsFiringStateOK) return;
 
 	// Spawn a projectile at the socket location of the barrel
 	FVector Location = Barrel->GetSocketLocation(FName("Projectile"));
@@ -51,13 +52,18 @@ void UTankAimingComponent::Fire() {
 	if (!ensure(SpawnedActor)) return;
 	SpawnedActor->LaunchProjectile(LaunchSpeed);
 	LastFireTime = GetWorld()->GetTimeSeconds();
+	AmmoCount--;
 }
 
 void UTankAimingComponent::Initialise(UTankBarrel *BarrelToSet, UTankTurret *TurretToSet) {
     if (!ensure(BarrelToSet && TurretToSet)) return;
     Barrel = BarrelToSet;
-    Turret = TurretToSet;
+	Turret = TurretToSet;
 }
+
+EFiringState UTankAimingComponent::GetFiringState() const { return FiringState; }
+
+int32 UTankAimingComponent::GetAmmoCount() const { return AmmoCount; }
 
 // Called when the game starts
 void UTankAimingComponent::BeginPlay() {
@@ -97,7 +103,10 @@ bool UTankAimingComponent::isBarrelMoving() const {
 
 void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) {
 
-	if ((GetWorld()->GetTimeSeconds() - LastFireTime) < ReloadTime) {
+	if (AmmoCount <= 0) {
+		FiringState = EFiringState::OutOfAmmo;
+
+	} else if ((GetWorld()->GetTimeSeconds() - LastFireTime) < ReloadTime) {
 		FiringState = EFiringState::Reloading;
 
 	} else if (isBarrelMoving()) {
