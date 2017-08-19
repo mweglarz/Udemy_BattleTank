@@ -8844,6 +8844,9 @@ HEADERS += \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Public/ScreenshotTools.h" \
 	"$$BattleTankRootPath/Source/BattleTank/BattleTank.h" \
 	"$$BattleTankRootPath/Source/BattleTank/BattleTankGameModeBase.h" \
+	"$$BattleTankRootPath/Source/BattleTank/Mortar.h" \
+	"$$BattleTankRootPath/Source/BattleTank/MortarBarrel.h" \
+	"$$BattleTankRootPath/Source/BattleTank/MortarDome.h" \
 	"$$BattleTankRootPath/Source/BattleTank/Projectile.h" \
 	"$$BattleTankRootPath/Source/BattleTank/Tank.h" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAIController.h" \
@@ -8853,5 +8856,6 @@ HEADERS += \
 	"$$BattleTankRootPath/Source/BattleTank/TankPlayerController.h" \
 	"$$BattleTankRootPath/Source/BattleTank/TankTrack.h" \
 	"$$BattleTankRootPath/Source/BattleTank/TankTurret.h" \
+	"$$BattleTankRootPath/Source/BattleTank/Interfaces/Turret.h" \
  
 

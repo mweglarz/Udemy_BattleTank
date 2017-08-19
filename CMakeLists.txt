@@ -6841,6 +6841,9 @@ set(SOURCE_FILES
 	"${UE4_ROOT_PATH}/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/ScreenshotTools.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/BattleTank.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/BattleTankGameModeBase.cpp"
+	"${GAME_ROOT_PATH}/Source/BattleTank/Mortar.cpp"
+	"${GAME_ROOT_PATH}/Source/BattleTank/MortarBarrel.cpp"
+	"${GAME_ROOT_PATH}/Source/BattleTank/MortarDome.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/Projectile.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/Tank.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankAIController.cpp"
@@ -6850,6 +6853,7 @@ set(SOURCE_FILES
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankPlayerController.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankTrack.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankTurret.cpp"
+	"${GAME_ROOT_PATH}/Source/BattleTank/Interfaces/Turret.cpp"
  )
 
 set(HEADER_FILES 
@@ -15698,6 +15702,9 @@ set(HEADER_FILES
 	"${UE4_ROOT_PATH}/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Public/ScreenshotTools.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/BattleTank.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/BattleTankGameModeBase.h"
+	"${GAME_ROOT_PATH}/Source/BattleTank/Mortar.h"
+	"${GAME_ROOT_PATH}/Source/BattleTank/MortarBarrel.h"
+	"${GAME_ROOT_PATH}/Source/BattleTank/MortarDome.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/Projectile.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/Tank.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankAIController.h"
@@ -15707,6 +15714,7 @@ set(HEADER_FILES
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankPlayerController.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankTrack.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankTurret.h"
+	"${GAME_ROOT_PATH}/Source/BattleTank/Interfaces/Turret.h"
  )
 
 set(CONFIG_FILES 

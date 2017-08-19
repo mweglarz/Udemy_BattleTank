@@ -6830,6 +6830,9 @@ SOURCES += \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/ScreenshotTools.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/BattleTank.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/BattleTankGameModeBase.cpp" \
+	"$$BattleTankRootPath/Source/BattleTank/Mortar.cpp" \
+	"$$BattleTankRootPath/Source/BattleTank/MortarBarrel.cpp" \
+	"$$BattleTankRootPath/Source/BattleTank/MortarDome.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/Projectile.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/Tank.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAIController.cpp" \
@@ -6839,5 +6842,6 @@ SOURCES += \
 	"$$BattleTankRootPath/Source/BattleTank/TankPlayerController.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/TankTrack.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/TankTurret.cpp" \
+	"$$BattleTankRootPath/Source/BattleTank/Interfaces/Turret.cpp" \
  
 
