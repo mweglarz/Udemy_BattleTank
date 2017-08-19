@@ -14,7 +14,11 @@ class BATTLETANK_API UTurret : public UStaticMeshComponent
 {
 	GENERATED_BODY()
 	
-	
-	
+protected:
+	UPROPERTY(EditAnywhere, Category = Setup)
+	float MaxDegreesPerSecond = 20;
+
+public:
+	virtual void Rotate(float RelativeSpeed);
 	
 };

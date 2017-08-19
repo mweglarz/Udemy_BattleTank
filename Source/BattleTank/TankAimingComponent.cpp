@@ -4,8 +4,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
-#include "TankBarrel.h"
-#include "TankTurret.h"
+#include "Interfaces/Barrel.h"
+#include "Interfaces/Turret.h"
 #include "Projectile.h"
 
 // Sets default values for this component's properties
@@ -55,7 +55,7 @@ void UTankAimingComponent::Fire() {
 	AmmoCount--;
 }
 
-void UTankAimingComponent::Initialise(UTankBarrel *BarrelToSet, UTankTurret *TurretToSet) {
+void UTankAimingComponent::Initialise(UBarrel *BarrelToSet, UTurret *TurretToSet) {
     if (!ensure(BarrelToSet && TurretToSet)) return;
     Barrel = BarrelToSet;
 	Turret = TurretToSet;

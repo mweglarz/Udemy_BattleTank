@@ -6842,6 +6842,7 @@ SOURCES += \
 	"$$BattleTankRootPath/Source/BattleTank/TankPlayerController.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/TankTrack.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/TankTurret.cpp" \
+	"$$BattleTankRootPath/Source/BattleTank/Interfaces/Barrel.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/Interfaces/Turret.cpp" \
  
 

@@ -6853,6 +6853,7 @@ set(SOURCE_FILES
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankPlayerController.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankTrack.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankTurret.cpp"
+	"${GAME_ROOT_PATH}/Source/BattleTank/Interfaces/Barrel.cpp"
 	"${GAME_ROOT_PATH}/Source/BattleTank/Interfaces/Turret.cpp"
  )
 
@@ -15714,6 +15715,7 @@ set(HEADER_FILES
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankPlayerController.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankTrack.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/TankTurret.h"
+	"${GAME_ROOT_PATH}/Source/BattleTank/Interfaces/Barrel.h"
 	"${GAME_ROOT_PATH}/Source/BattleTank/Interfaces/Turret.h"
  )
 

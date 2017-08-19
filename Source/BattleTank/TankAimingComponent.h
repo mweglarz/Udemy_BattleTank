@@ -15,8 +15,8 @@ enum class EFiringState: uint8 {
 };
 
 
-class UTankTurret;
-class UTankBarrel;
+class UTurret;
+class UBarrel;
 class AProjectile;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -32,8 +32,8 @@ protected:
 	int32 AmmoCount = 10;
 
 private:
-    UTankBarrel* Barrel = nullptr;
-    UTankTurret* Turret = nullptr;
+	UBarrel* Barrel = nullptr;
+	UTurret* Turret = nullptr;
 
     UPROPERTY(EditDefaultsOnly, Category = "Firing")
     float LaunchSpeed = 6000; // [cm/s]
@@ -57,7 +57,7 @@ public:
 	void Fire();
 
     UFUNCTION(BlueprintCallable, Category = "Setup")
-    void Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
+	void Initialise(UBarrel* BarrelToSet, UTurret* TurretToSet);
 
 	EFiringState GetFiringState() const;
 

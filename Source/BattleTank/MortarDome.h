@@ -3,18 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/StaticMeshComponent.h"
+#include "Interfaces/Turret.h"
 #include "MortarDome.generated.h"
 
 /**
  * 
  */
 UCLASS(meta = (BlueprintSpawnableComponent))
-class BATTLETANK_API UMortarDome : public UStaticMeshComponent
-{
+class BATTLETANK_API UMortarDome : public UTurret {
 	GENERATED_BODY()
-	
-	
-	
 	
 };

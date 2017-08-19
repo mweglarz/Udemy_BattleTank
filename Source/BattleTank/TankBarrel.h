@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/StaticMeshComponent.h"
+#include "Interfaces/Barrel.h"
 #include "TankBarrel.generated.h"
 
 /**
  * 
  */
 UCLASS(meta = (BlueprintSpawnableComponent))
-class BATTLETANK_API UTankBarrel : public UStaticMeshComponent {
+class BATTLETANK_API UTankBarrel : public UBarrel {
 	GENERATED_BODY()
 
 private:
@@ -22,8 +22,5 @@ private:
 
     UPROPERTY(EditAnywhere, Category = Setup)
     float MinElevationDegress = 0;
-
-public:
-	void Elevate(float RelativeSpeed);
 
 };

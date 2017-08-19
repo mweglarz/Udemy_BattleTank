@@ -3,20 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/StaticMeshComponent.h"
+#include "Interfaces/Turret.h"
 #include "TankTurret.generated.h"
 
 /**
  * 
  */
 UCLASS(meta = (BlueprintSpawnableComponent))
-class BATTLETANK_API UTankTurret : public UStaticMeshComponent {
+class BATTLETANK_API UTankTurret : public UTurret {
 	GENERATED_BODY()
 
-private:
-    UPROPERTY(EditAnywhere, Category = Setup)
-    float MaxDegreesPerSecond = 20;
-	
-public:
-    void Rotate(float RelativeSpeed);
 };
