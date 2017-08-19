@@ -1,5 +1,5 @@
 # Ignore starter content
-Content/StarterContent/*
+# Content/StarterContent/*
 
 # Compiled Object files
 *.slo
