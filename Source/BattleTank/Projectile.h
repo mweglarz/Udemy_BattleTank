@@ -22,6 +22,10 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, Category = "Setup")
 	UParticleSystemComponent* LaunchBlast = nullptr;
+
+	UPROPERTY(VisibleAnywhere, Category = "Setup")
+	UParticleSystemComponent* ImpactBlast = nullptr;
+
 	
 public:	
 	// Sets default values for this actor's properties
@@ -33,9 +37,13 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	virtual void Tick(float DeltaTime) override;
-
 private:
+
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
+			   UPrimitiveComponent* OtherComponent, FVector NormalImpulse,
+			   const FHitResult& Hit);
+
 	void SetupDefaultComponents();
-	
+	void SetupOnHitDelegate();
 };

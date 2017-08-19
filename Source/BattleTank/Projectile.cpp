@@ -11,7 +11,7 @@
 AProjectile::AProjectile() {
     // Set this actor to call Tick() every frame.  You can turn this off to
     // improve performance if you don't need it.
-    PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 	SetupDefaultComponents();
 }
 
@@ -24,10 +24,17 @@ void AProjectile::LaunchProjectile(float Speed) {
 }
 
 // Called when the game starts or when spawned
-void AProjectile::BeginPlay() { Super::BeginPlay(); }
+void AProjectile::BeginPlay() {
+	Super::BeginPlay();
 
-// Called every frame
-void AProjectile::Tick(float DeltaTime) { Super::Tick(DeltaTime); }
+	SetupOnHitDelegate();
+}
+
+void AProjectile::OnHit(UPrimitiveComponent *HitComponent, AActor *OtherActor, UPrimitiveComponent *OtherComponent, FVector NormalImpulse, const FHitResult &Hit) {
+
+	LaunchBlast->Deactivate();
+	ImpactBlast->Activate();
+}
 
 void AProjectile::SetupDefaultComponents() {
 
@@ -40,5 +47,14 @@ void AProjectile::SetupDefaultComponents() {
 	CollisionMesh->SetVisibility(true);
 
 	LaunchBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Launch_Blast"));
-	LaunchBlast->AttachTo(RootComponent);
+	LaunchBlast->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+
+	ImpactBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Impact_Blast"));
+	ImpactBlast->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	ImpactBlast->bAutoActivate = false;
+}
+
+void AProjectile::SetupOnHitDelegate() {
+	if (!ensure(CollisionMesh)) return;
+	CollisionMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 }
