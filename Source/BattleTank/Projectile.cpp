@@ -8,6 +8,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "PhysicsEngine/RadialForceComponent.h"
 #include "Runtime/Engine/Public/TimerManager.h"
+#include "Kismet/GameplayStatics.h"
+#include "GameFramework/DamageType.h"
 
 // Sets default values
 AProjectile::AProjectile() {
@@ -41,6 +43,13 @@ void AProjectile::OnHit(UPrimitiveComponent *HitComponent, AActor *OtherActor, U
 	SetRootComponent(ImpactBlast);
 	CollisionMesh->DestroyComponent();
 
+	UGameplayStatics::ApplyRadialDamage(this,
+										BaseDamage,
+										GetActorLocation(),
+										ExplosionForce->Radius,
+										UDamageType::StaticClass(),
+										TArray<AActor*>()); // don't ignore any actors
+
 	FTimerHandle OutTimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(OutTimerHandle, this, &AProjectile::LifetimeTimerExpired, DestroyDelay);
 }
@@ -57,7 +66,7 @@ void AProjectile::SetupDefaultComponents() {
 	CollisionMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("Collision_Mesh"));
 	SetRootComponent(CollisionMesh);
 	CollisionMesh->SetNotifyRigidBodyCollision(true);
-	CollisionMesh->SetVisibility(true);
+	CollisionMesh->SetVisibility(false);
 
 	LaunchBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Launch_Blast"));
 	LaunchBlast->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);

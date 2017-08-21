@@ -3,24 +3,40 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
+
+class AController;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn {
 	GENERATED_BODY()
 
 private:
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float StartingHealth = 100;
 
+	UPROPERTY(VisibleAnywhere, Category = "Setup")
+	float CurrentHealth = StartingHealth;
 
 public:
-    // constructor
-    ATank();
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintPure, Category = "Health")
+	float GetHealthRatio() const;
+
 protected:
-    // Called when the game starts or when spawned
+
+	ATank();
+
+	// Called when the game starts or when spawned
     virtual void BeginPlay() override;
+
+	virtual float TakeDamage(float Damage,
+							 struct FDamageEvent const& DamageEvent,
+							 AController* EventInstigator,
+							 AActor* DamageCauser) override;
 
 };

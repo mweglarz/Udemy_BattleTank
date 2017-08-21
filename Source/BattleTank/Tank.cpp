@@ -12,11 +12,27 @@ ATank::ATank() {
 
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) {
-    Super::SetupPlayerInputComponent(PlayerInputComponent);
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
+float ATank::GetHealthRatio() const {
+	float ClampedHealth = FMath::Clamp<float>(CurrentHealth, 0.f, StartingHealth);
+	return ClampedHealth / StartingHealth * 100;
+}
 
 // Called when the game starts or when spawned
 void ATank::BeginPlay() {
-    Super::BeginPlay();
+	Super::BeginPlay();
+}
+
+float ATank::TakeDamage(float Damage, const FDamageEvent &DamageEvent, AController *EventInstigator, AActor *DamageCauser) {
+	UE_LOG(LogTemp, Warning, TEXT("%s take %f damage"), *GetName(), Damage);
+
+	CurrentHealth -= Damage;
+
+	if (CurrentHealth < 0) {
+		UE_LOG(LogTemp, Warning, TEXT("%s died"), *GetName());
+	}
+
+	return Damage;
 }

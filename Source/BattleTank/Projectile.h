@@ -32,7 +32,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	float DestroyDelay = 10.f;
-	
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float BaseDamage = 40.f;
+
 public:	
 	// Sets default values for this actor's properties
 	AProjectile();

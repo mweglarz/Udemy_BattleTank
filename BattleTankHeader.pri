@@ -8848,6 +8848,7 @@ HEADERS += \
 	"$$BattleTankRootPath/Source/BattleTank/MortarBarrel.h" \
 	"$$BattleTankRootPath/Source/BattleTank/MortarDome.h" \
 	"$$BattleTankRootPath/Source/BattleTank/Projectile.h" \
+	"$$BattleTankRootPath/Source/BattleTank/ProjectileDamageType.h" \
 	"$$BattleTankRootPath/Source/BattleTank/Tank.h" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAIController.h" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAimingComponent.h" \

@@ -6834,6 +6834,7 @@ SOURCES += \
 	"$$BattleTankRootPath/Source/BattleTank/MortarBarrel.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/MortarDome.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/Projectile.cpp" \
+	"$$BattleTankRootPath/Source/BattleTank/ProjectileDamageType.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/Tank.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAIController.cpp" \
 	"$$BattleTankRootPath/Source/BattleTank/TankAimingComponent.cpp" \
