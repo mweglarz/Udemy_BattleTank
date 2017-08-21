@@ -26,12 +26,10 @@ void ATank::BeginPlay() {
 }
 
 float ATank::TakeDamage(float Damage, const FDamageEvent &DamageEvent, AController *EventInstigator, AActor *DamageCauser) {
-	UE_LOG(LogTemp, Warning, TEXT("%s take %f damage"), *GetName(), Damage);
-
 	CurrentHealth -= Damage;
 
 	if (CurrentHealth < 0) {
-		UE_LOG(LogTemp, Warning, TEXT("%s died"), *GetName());
+		OnDeath.Broadcast();
 	}
 
 	return Damage;

@@ -5,6 +5,7 @@
 #include "GameFramework/Pawn.h"
 #include "Engine/World.h"
 #include "TankAimingComponent.h"
+#include "Tank.h"
 
 ATankPlayerController::ATankPlayerController
 (const FObjectInitializer &ObjectInitializer): APlayerController(ObjectInitializer) {
@@ -92,7 +93,22 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector& HitLocation,
         HitLocation = Hit.Location;
     }
 
-    return bHitSuccess;
+	return bHitSuccess;
+}
+
+void ATankPlayerController::SetPawn(APawn *InPawn) {
+	Super::SetPawn(InPawn);
+
+	if (!InPawn) return;
+
+	ATank* PossessedTank = Cast<ATank>(InPawn);
+	if(!ensure(PossessedTank)) return;
+
+	PossessedTank->OnDeath.AddUniqueDynamic(this, &ATankPlayerController::OnTankDeath);
+}
+
+void ATankPlayerController::OnTankDeath() {
+	UE_LOG(LogTemp, Warning, TEXT("Player tank destroyed"));
 }
 
 

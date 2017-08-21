@@ -46,4 +46,9 @@ private:
 
     // GetHitLocation based on max range and look direction
     bool GetLookVectorHitLocation(FVector& HitLocation, const FVector LookDirection) const;
+
+	virtual void SetPawn(APawn *InPawn) override;
+
+	UFUNCTION()
+	void OnTankDeath();
 };

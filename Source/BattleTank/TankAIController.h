@@ -26,4 +26,8 @@ public:
 
 private:
     APawn* GetPlayerTank() const;
+	virtual void SetPawn(APawn *InPawn) override;
+
+	UFUNCTION()
+	void OnTankDeath();
 };

@@ -8,9 +8,13 @@
 
 class AController;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTankDelegate);
 UCLASS()
 class BATTLETANK_API ATank : public APawn {
 	GENERATED_BODY()
+
+public:
+	FTankDelegate OnDeath;
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
@@ -18,6 +22,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Setup")
 	float CurrentHealth = StartingHealth;
+
 
 public:
 

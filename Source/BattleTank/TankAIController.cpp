@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "GameFramework/PlayerController.h"
 #include "Engine/World.h"
+#include "Tank.h"
 
 void ATankAIController::BeginPlay() {
     Super::BeginPlay();
@@ -34,5 +35,19 @@ APawn* ATankAIController::GetPlayerTank() const {
     auto PlayerController = GetWorld()->GetFirstPlayerController();
 
     if (!ensure(PlayerController)) return nullptr;
-    return PlayerController->GetPawn();
+	return PlayerController->GetPawn();
+}
+
+void ATankAIController::SetPawn(APawn *InPawn) {
+	Super::SetPawn(InPawn);
+	if (!InPawn) return;
+
+	ATank* PossessedTank = Cast<ATank>(InPawn);
+	if (!ensure(PossessedTank)) return;
+
+	PossessedTank->OnDeath.AddUniqueDynamic(this, &ATankAIController::OnTankDeath);
+}
+
+void ATankAIController::OnTankDeath() {
+	UE_LOG(LogTemp, Warning, TEXT("AI tank destroyed"));
 }
