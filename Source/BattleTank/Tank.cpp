@@ -17,7 +17,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent) {
 
 float ATank::GetHealthRatio() const {
 	float ClampedHealth = FMath::Clamp<float>(CurrentHealth, 0.f, StartingHealth);
-	return ClampedHealth / StartingHealth * 100;
+	return ClampedHealth / StartingHealth;
 }
 
 // Called when the game starts or when spawned
@@ -27,6 +27,8 @@ void ATank::BeginPlay() {
 
 float ATank::TakeDamage(float Damage, const FDamageEvent &DamageEvent, AController *EventInstigator, AActor *DamageCauser) {
 	CurrentHealth -= Damage;
+
+	UE_LOG(LogTemp, Warning, TEXT("[Damage] %s take %f damage."), *GetName(), Damage);
 
 	if (CurrentHealth < 0) {
 		OnDeath.Broadcast();
